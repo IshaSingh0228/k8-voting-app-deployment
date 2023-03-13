@@ -72,25 +72,24 @@ https://kubernetes.io/docs/reference/kubectl/#resource-types
 &nbsp; &nbsp; commands: eg. create, get, describe, delete <br />
 &nbsp; &nbsp; type: resource type,eg. pod, service, deployment, replicaSets <br />
 &nbsp; &nbsp; name: Specifies the name of the resource <br />*
-<sub> 
+
 kubectl get pods <br />
 kubectl get pods -o wide <br />
 kubectl describe pods <name> <br />
 kubectl create -f <file.yaml> <br />
 kubectl apply -f <file.yaml> <br />
-kubectl delete pod <name> <br /></sub>
+kubectl delete pod <name> <br />
  
-<sub>
+
 kubectl edit replicaset <name> <br />
 kubectl replace -f <replica_config.yaml> <br />
 kubectl scale replicaset <replicaSet_name> --replica={number}  <br />
-kubectl explain replicaset | grep VERSION <br /> </sub>
+kubectl explain replicaset | grep VERSION <br /> 
  
-<sub>
 kubectl rollout status <deployment_name> <br />
 kubectl rollout history <deployment_nname> <br />
 kubectl rollout undo <deployment_name> <br />
 kubectl create -f deployment.yaml --record  <br />
-</sub>
+
 
 
