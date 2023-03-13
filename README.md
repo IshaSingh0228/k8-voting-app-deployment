@@ -13,15 +13,11 @@ Install below tools:
 Run the app in Kubernetes
 -------------------------
 
-The folder k8s-specifications contains the yaml specifications of the Voting App's services.
+The folder k8s-specifications contains the yaml specifications of the Voting App's services in 2-ways:
+1. Using Pods and Services
+2. Uisng Deployments and Services
 
-First create the vote namespace
-
-```
-$ kubectl create namespace vote
-```
-
-Run the following command to create the deployments and services objects:
+1. Run the following command to create the Pods and Services objects:
 ```
 $ kubectl create -f k8s-specifications/
 deployment "db" created
@@ -34,8 +30,22 @@ deployment "vote" created
 service "vote" created
 deployment "worker" created
 ```
-
+2. Run the following command to create the Deployments and Services objects:
+```
+$ kubectl create -f k8s-specifications/
+deployment "db" created
+service "db" created
+deployment "redis" created
+service "redis" created
+deployment "result" created
+service "result" created
+deployment "vote" created
+service "vote" created
+deployment "worker" created
+```
 The vote interface is then available on port 31000 on each host of the cluster, the result one is available on port 31001.
+
+or minikube service <service_name> --url
 
 Architecture
 -----
@@ -53,3 +63,33 @@ Note
 ----
 
 The voting application only accepts one vote per client. It does not register votes if a vote has already been submitted from a client.
+
+Some common commands 
+----
+https://kubernetes.io/docs/reference/kubectl/#resource-types
+ 
+kubectl [command] [TYPE] [NAME] [flags] 
+  commands: eg. create, get, describe, delete
+  type: resource type,eg. pod, service, deployment, replicaSets
+  name: Specifies the name of the resource
+  
+kubectl get pods
+kubectl get pods -o wide
+kubectl describe pods <name>
+kubectl create -f <file.yaml>
+kubectl apply -f <file.yaml>
+kubectl delete pod <name>
+
+kubectl edit replicaset <name>
+kubectl replace -f <replica_config.yaml>
+kubectl scale replicaset <replicaSet_name> --replica=<number>
+kubectl explain replicaset | grep VERSION
+
+kubectl rollout status <deployment_name>
+kubectl rollout history <deployment_nname>
+kubectl rollout undo <deployment_name>
+kubectl create -f deployment.yaml --record 
+
+
+
+
