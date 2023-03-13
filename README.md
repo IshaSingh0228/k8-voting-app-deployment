@@ -10,29 +10,38 @@ Install below tools:
 2. container or virtual machine manager such as Docker or VirtualBox
 3. minikube:  https://minikube.sigs.k8s.io/docs/start/
 
+Assumptions
+-----
+- Application is deployed and built into docker images and pushed to docker repository like DockerHub, so that Kuberenetes can pull the image down
+- Set up a single node cluster with minikube and start the cluster using: 
+```
+minikube start
+```
+-  Clone the k8Deploy directory in local
+
 Run the app in Kubernetes
 -------------------------
+The folder k8Deploy contains the yaml specifications of the Voting App's services in 2-ways:
+1. Using Pods
+2. Uisng Deployments <br />
 
-The folder k8s-specifications contains the yaml specifications of the Voting App's services in 2-ways:
-1. Using Pods and Services
-2. Uisng Deployments and Services
-
-1. Run the following command to create the Pods and Services objects:
+- Run the following command to create the Pods and Services objects:
 ```
 $ kubectl create -f k8Deploy/VotingAppUsingPods
 $ kubectl create -f k8Deploy/VotingAppServices
 
 ```
-2. Run the following command to create the Deployments and Services objects:
+- Run the following command to create the Deployments and Services objects:
 ```
 $ kubectl create -f k8Deploy/VotingAppUsingDeployment
 $ kubectl create -f k8Deploy/VotingAppServices
 
 ```
-The vote interface is then available on port 31000 on each host of the cluster, the result one is available on port 31001.
-
-or minikube service <service_name> --url
-
+The vote interface is then available on port 30004 on each host of the cluster, the result one is available on port 30005. <br />
+You can access the services using the URL which could be formed by IP of minikube or run the cmd
+```
+minikube service <service_name> --url
+```
 Architecture
 -----
 
