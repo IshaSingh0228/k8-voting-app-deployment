@@ -69,26 +69,26 @@ Some common commands
 https://kubernetes.io/docs/reference/kubectl/#resource-types
  
 kubectl [command] [TYPE] [NAME] [flags] 
-  commands: eg. create, get, describe, delete
-  type: resource type,eg. pod, service, deployment, replicaSets
-  name: Specifies the name of the resource
+  *commands: eg. create, get, describe, delete
+  *type: resource type,eg. pod, service, deployment, replicaSets
+  *name: Specifies the name of the resource
   
-kubectl get pods
-kubectl get pods -o wide
-kubectl describe pods <name>
-kubectl create -f <file.yaml>
-kubectl apply -f <file.yaml>
-kubectl delete pod <name>
+*kubectl get pods
+*kubectl get pods -o wide
+*kubectl describe pods <name>
+*kubectl create -f <file.yaml>
+*kubectl apply -f <file.yaml>
+*kubectl delete pod <name>
 
-kubectl edit replicaset <name>
-kubectl replace -f <replica_config.yaml>
-kubectl scale replicaset <replicaSet_name> --replica=<number>
-kubectl explain replicaset | grep VERSION
+*kubectl edit replicaset <name>
+*kubectl replace -f <replica_config.yaml>
+*kubectl scale replicaset <replicaSet_name> --replica=<number>
+*kubectl explain replicaset | grep VERSION
 
-kubectl rollout status <deployment_name>
-kubectl rollout history <deployment_nname>
-kubectl rollout undo <deployment_name>
-kubectl create -f deployment.yaml --record 
+*kubectl rollout status <deployment_name>
+*kubectl rollout history <deployment_nname>
+*kubectl rollout undo <deployment_name>
+*kubectl create -f deployment.yaml --record 
 
 
 
