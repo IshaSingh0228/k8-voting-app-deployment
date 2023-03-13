@@ -19,29 +19,15 @@ The folder k8s-specifications contains the yaml specifications of the Voting App
 
 1. Run the following command to create the Pods and Services objects:
 ```
-$ kubectl create -f k8s-specifications/
-deployment "db" created
-service "db" created
-deployment "redis" created
-service "redis" created
-deployment "result" created
-service "result" created
-deployment "vote" created
-service "vote" created
-deployment "worker" created
+$ kubectl create -f k8Deploy/VotingAppUsingPods
+$ kubectl create -f k8Deploy/VotingAppServices
+
 ```
 2. Run the following command to create the Deployments and Services objects:
 ```
-$ kubectl create -f k8s-specifications/
-deployment "db" created
-service "db" created
-deployment "redis" created
-service "redis" created
-deployment "result" created
-service "result" created
-deployment "vote" created
-service "vote" created
-deployment "worker" created
+$ kubectl create -f k8Deploy/VotingAppUsingDeployment
+$ kubectl create -f k8Deploy/VotingAppServices
+
 ```
 The vote interface is then available on port 31000 on each host of the cluster, the result one is available on port 31001.
 
