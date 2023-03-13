@@ -10,14 +10,24 @@ Install below tools:
 2. container or virtual machine manager such as Docker or VirtualBox
 3. minikube:  https://minikube.sigs.k8s.io/docs/start/
 
+Architecture
+-----
+
+![Architecture diagram](architecture.png)
+* A front-end web app in [Python](/vote) or [ASP.NET Core](/vote/dotnet) which lets you vote between two options
+* A [Redis](https://hub.docker.com/_/redis/) or [NATS](https://hub.docker.com/_/nats/) queue which collects new votes
+* A [.NET Core](/worker/src/Worker), [Java](/worker/src/main) or [.NET Core 2.1](/worker/dotnet) worker which consumes votes and stores them in…
+* A [Postgres](https://hub.docker.com/_/postgres/) or [TiDB](https://hub.docker.com/r/dockersamples/tidb/tags/) database backed by a Docker volume
+* A [Node.js](/result) or [ASP.NET Core SignalR](/result/dotnet) webapp which shows the results of the voting in real time
+
 Assumptions
 -----
-- Application is deployed and built into docker images and pushed to docker repository like DockerHub, so that Kuberenetes can pull the image down
-- Set up a single node cluster with minikube and start the cluster using: 
+- Above application is deployed and built into docker images and pushed to docker repository like DockerHub, so that Kuberenetes can pull the image down
+- Set up a single node cluster with minikube and start the cluster: 
 ```
 minikube start
 ```
--  Clone the k8Deploy directory in local
+-  Clone the k8Deploy folder in local
 
 Run the app in Kubernetes
 -------------------------
@@ -42,18 +52,11 @@ You can access the services using the URL which could be formed by IP of minikub
 ```
 minikube service <service_name> --url
 ```
-Architecture
------
-
-![Architecture diagram](architecture.png)
-
-* A front-end web app in [Python](/vote) or [ASP.NET Core](/vote/dotnet) which lets you vote between two options
-* A [Redis](https://hub.docker.com/_/redis/) or [NATS](https://hub.docker.com/_/nats/) queue which collects new votes
-* A [.NET Core](/worker/src/Worker), [Java](/worker/src/main) or [.NET Core 2.1](/worker/dotnet) worker which consumes votes and stores them in…
-* A [Postgres](https://hub.docker.com/_/postgres/) or [TiDB](https://hub.docker.com/r/dockersamples/tidb/tags/) database backed by a Docker volume
-* A [Node.js](/result) or [ASP.NET Core SignalR](/result/dotnet) webapp which shows the results of the voting in real time
-
-
+You can also scale up the deployment and if you refresh the page, each time you will get different page served by a new pod
+```
+kubectl scale deployment <deployment_name> --replicas=<number>
+kubectl scale deployment voting-app-deploy --replicas=4
+```
 Note
 ----
 
