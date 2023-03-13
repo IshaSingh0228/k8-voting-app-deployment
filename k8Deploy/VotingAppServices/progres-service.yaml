@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db #worker-app expects the name db
+  labels:
+    name: postgres-service
+    app: demo-voting-app
+spec:
+  ports:
+    - port: 5132
+      targetPort: 5132
+  selector:
+    name: postgres-pod
+    app: demo-voting-app

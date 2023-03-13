@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: progres-deploy
+  labels:
+    name: progress-deploy
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      name: progres-pod
+      app: demo-voting-app
+  template:
+    metadata:
+      name: postgres-pod
+      labels:
+        name: postgres-pod
+        app: demo-voting-app
+    spec: 
+      containers:
+        - name: postgres
+          image: postgres
+          ports:
+            - containerPort: 5432
+          env:    #worker or result-app uses this db creds to connect (not remcommended to hard code can use vault)
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
