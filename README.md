@@ -12,13 +12,13 @@ Install below tools:
 
 Architecture
 -----
-
 ![Architecture diagram](architecture.png)
 * A front-end web app in [Python](/vote) or [ASP.NET Core](/vote/dotnet) which lets you vote between two options
 * A [Redis](https://hub.docker.com/_/redis/) or [NATS](https://hub.docker.com/_/nats/) queue which collects new votes
 * A [.NET Core](/worker/src/Worker), [Java](/worker/src/main) or [.NET Core 2.1](/worker/dotnet) worker which consumes votes and stores them in…
 * A [Postgres](https://hub.docker.com/_/postgres/) or [TiDB](https://hub.docker.com/r/dockersamples/tidb/tags/) database backed by a Docker volume
 * A [Node.js](/result) or [ASP.NET Core SignalR](/result/dotnet) webapp which shows the results of the voting in real time
+
 
 Assumptions
 -----
@@ -39,19 +39,20 @@ The folder k8Deploy contains the yaml specifications of the Voting App's service
 ```
 $ kubectl create -f k8Deploy/VotingAppUsingPods
 $ kubectl create -f k8Deploy/VotingAppServices
-
 ```
 - Run the following command to create the Deployments and Services objects:
 ```
 $ kubectl create -f k8Deploy/VotingAppUsingDeployment
 $ kubectl create -f k8Deploy/VotingAppServices
-
 ```
+
 The vote interface is then available on port 30004 on each host of the cluster, the result one is available on port 30005. <br />
 You can access the services using the URL which could be formed by IP of minikube or run the cmd
+
 ```
 minikube service <service_name> --url
 ```
+
 You can also scale up the deployment and if you refresh the page, each time you will get different page served by a new pod
 ```
 kubectl scale deployment <deployment_name> --replicas=<number>
@@ -70,7 +71,6 @@ https://kubernetes.io/docs/reference/kubectl/#resource-types
 &nbsp; &nbsp; commands: eg. create, get, describe, delete <br />
 &nbsp; &nbsp; type: resource type,eg. pod, service, deployment, replicaSets <br />
 &nbsp; &nbsp; name: Specifies the name of the resource <br />*
-
 kubectl get pods <br />
 kubectl get pods -o wide <br />
 kubectl describe pods <name> <br />
