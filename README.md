@@ -64,32 +64,33 @@ Note
 
 The voting application only accepts one vote per client. It does not register votes if a vote has already been submitted from a client.
 
-Some common commands 
-----
+**Some common commands**
+
 https://kubernetes.io/docs/reference/kubectl/#resource-types
  
-kubectl [command] [TYPE] [NAME] [flags] <br />
-$~$  commands: eg. create, get, describe, delete <br />
-$~$  type: resource type,eg. pod, service, deployment, replicaSets <br />
-$~$  name: Specifies the name of the resource <br />
-<pre>  
-kubectl get pods
-kubectl get pods -o wide
-kubectl describe pods <name>
-kubectl create -f <file.yaml>
-kubectl apply -f <file.yaml>
-kubectl delete pod <name>
-
-kubectl edit replicaset <name>
-kubectl replace -f <replica_config.yaml>
-kubectl scale replicaset <replicaSet_name> --replica=<number>
-kubectl explain replicaset | grep VERSION
-
-kubectl rollout status <deployment_name>
-kubectl rollout history <deployment_nname>
-kubectl rollout undo <deployment_name>
-kubectl create -f deployment.yaml --record 
-</pre>
-
+*kubectl [command] [TYPE] [NAME] [flags] <br />
+&nbsp; &nbsp; commands: eg. create, get, describe, delete <br />
+&nbsp; &nbsp; type: resource type,eg. pod, service, deployment, replicaSets <br />
+&nbsp; &nbsp; name: Specifies the name of the resource <br />*
+<sub> 
+kubectl get pods <br />
+kubectl get pods -o wide <br />
+kubectl describe pods <name> <br />
+kubectl create -f <file.yaml> <br />
+kubectl apply -f <file.yaml> <br />
+kubectl delete pod <name> <br /></sub>
+ 
+<sub>
+kubectl edit replicaset <name> <br />
+kubectl replace -f <replica_config.yaml> <br />
+kubectl scale replicaset <replicaSet_name> --replica={number}  <br />
+kubectl explain replicaset | grep VERSION <br /> </sub>
+ 
+<sub>
+kubectl rollout status <deployment_name> <br />
+kubectl rollout history <deployment_nname> <br />
+kubectl rollout undo <deployment_name> <br />
+kubectl create -f deployment.yaml --record  <br />
+</sub>
 
 
